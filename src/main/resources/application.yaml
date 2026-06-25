@@ -1,6 +1,18 @@
 spring:
   application:
     name: gym-api
-
+  datasource:
+    url: jdbc:postgresql://localhost:5432/gym-api
+    username: gym-api_user
+    password: gym-api_pass
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
 server:
   port: 3000

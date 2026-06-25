@@ -26,7 +26,6 @@ public class PhysicalAssessmentEntity {
     private BigDecimal height;
 
     @Column(name = "body_fat_percentage", nullable = false)
-
     private BigDecimal bodyFatPercentage;
 
 }
