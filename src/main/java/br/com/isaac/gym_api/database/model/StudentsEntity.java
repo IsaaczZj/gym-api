@@ -3,6 +3,8 @@ package br.com.isaac.gym_api.database.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -24,7 +26,6 @@ public class StudentsEntity {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @OneToOne
-    @JoinColumn(name = "physical_assessment_id")
-    private PhysicalAssessmentEntity physicalAssessment;
+    @OneToMany(mappedBy = "student")
+    private Set<WorkoutsEntity> workouts = new HashSet<>();
 }

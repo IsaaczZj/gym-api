@@ -28,4 +28,7 @@ public class PhysicalAssessmentEntity {
     @Column(name = "body_fat_percentage", nullable = false)
     private BigDecimal bodyFatPercentage;
 
+    @OneToOne
+    @JoinColumn(name = "student_id")
+    private StudentsEntity student;
 }
