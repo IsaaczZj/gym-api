@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -28,7 +29,11 @@ public class PhysicalAssessmentEntity {
     @Column(name = "body_fat_percentage", nullable = false)
     private BigDecimal bodyFatPercentage;
 
+    @Column(name = "created_at")
+    LocalDateTime createdAt;
+
     @OneToOne
     @JoinColumn(name = "student_id")
     private StudentsEntity student;
+
 }

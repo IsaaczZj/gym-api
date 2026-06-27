@@ -2,6 +2,7 @@ package br.com.isaac.gym_api.handler;
 
 import br.com.isaac.gym_api.dto.ApiErrorResponseDTO;
 import br.com.isaac.gym_api.dto.FieldErrorResponseDTO;
+import br.com.isaac.gym_api.exception.AppErrorException;
 import br.com.isaac.gym_api.exception.ErrorResponse;
 import br.com.isaac.gym_api.exception.NotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,6 +17,16 @@ import java.util.List;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(AppErrorException.class)
+    public ResponseEntity<ErrorResponse> handleAppErrorException(AppErrorException ex) {
+        ErrorResponse response = ErrorResponse.builder()
+                .message(ex.getMessage())
+                .status(ex.getStatusCode())
+                .build();
+
+        return ResponseEntity.status(ex.getStatusCode()).body(response);
+    }
 
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ErrorResponse> handleNotFoundException(NotFoundException ex) {
