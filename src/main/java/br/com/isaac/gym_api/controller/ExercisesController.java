@@ -21,8 +21,10 @@ public class ExercisesController {
     private final ExercisesService exercisesService;
 
     @GetMapping
-    public ResponseEntity<List<ExerciseReponseDTO>> findAllExercises() {
-        return ResponseEntity.ok(exercisesService.findAll());
+    public ResponseEntity<List<ExerciseReponseDTO>> findAllExercises(
+            @RequestParam(required = false) String muscleGroup
+    ) {
+        return ResponseEntity.ok(exercisesService.findAll(muscleGroup));
     }
 
     @PostMapping

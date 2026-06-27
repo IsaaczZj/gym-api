@@ -14,7 +14,14 @@ import java.util.List;
 public class ExercisesService {
     private final ExercisesRepository exercisesRepository;
 
-    public List<ExerciseReponseDTO> findAll() {
+    public List<ExerciseReponseDTO> findAll(String muscleGroup) {
+        if (muscleGroup != null && !muscleGroup.isBlank()) {
+            return exercisesRepository.findAllByMuscleGroupIgnoreCase(muscleGroup)
+                    .stream()
+                    .map(ExerciseReponseDTO::fromEntity)
+                    .toList();
+        }
+
         return exercisesRepository.findAll().stream().map(ExerciseReponseDTO::fromEntity).toList();
     }
 
@@ -24,4 +31,6 @@ public class ExercisesService {
                 .muscleGroup(newExercise.muscleGroup())
                 .build());
     }
+
+
 }
