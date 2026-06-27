@@ -4,9 +4,7 @@ package br.com.isaac.gym_api.database.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
