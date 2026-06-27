@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "workouts")
@@ -18,7 +19,7 @@ public class WorkoutsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
 
     @Column(nullable = false)
     private String nome;
@@ -32,5 +33,6 @@ public class WorkoutsEntity {
             name = "workouts_exercises",
             joinColumns = @JoinColumn(name = "workout_id"),
             inverseJoinColumns = @JoinColumn(name = "exercise_id"))
+    @Builder.Default
     private Set<ExercisesEntity> exercises = new HashSet<>();
 }

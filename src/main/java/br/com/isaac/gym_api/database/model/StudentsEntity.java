@@ -27,5 +27,6 @@ public class StudentsEntity {
     private String email;
 
     @OneToMany(mappedBy = "student")
+    @Builder.Default
     private Set<WorkoutsEntity> workouts = new HashSet<>();
 }

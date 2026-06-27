@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "exercises")
@@ -18,7 +19,7 @@ public class ExercisesEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
 
     @Column(nullable = false)
     private String name;
@@ -28,5 +29,6 @@ public class ExercisesEntity {
 
 
     @ManyToMany(mappedBy = "exercises")
+    @Builder.Default
     private Set<WorkoutsEntity> workouts = new HashSet<>();
 }

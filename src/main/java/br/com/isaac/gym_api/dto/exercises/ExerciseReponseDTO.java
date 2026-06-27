@@ -3,8 +3,10 @@ package br.com.isaac.gym_api.dto.exercises;
 
 import br.com.isaac.gym_api.database.model.ExercisesEntity;
 
+import java.util.UUID;
+
 public record ExerciseReponseDTO(
-        String id,
+        UUID id,
         String name,
         String muscleGroup
 ) {
