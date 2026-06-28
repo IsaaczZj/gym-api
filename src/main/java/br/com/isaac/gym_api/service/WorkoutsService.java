@@ -39,7 +39,7 @@ public class WorkoutsService {
         }
 
         for (UUID id : newWorkout.exercise_ids()) {
-            ExercisesEntity exercise = exercisesRepository.findById(id).orElseThrow(() -> new NotFoundException("Exercício não encontrado"));
+            ExercisesEntity exercise = exercisesRepository.findById(id).orElseThrow(() -> new NotFoundException(String.format("Exercício %s não encontrado", id)));
 
             exercises.add(exercise);
         }

@@ -25,7 +25,6 @@ public class StudentsController {
 
     private final StudentsService studentsService;
 
-
     @PostMapping
     public ResponseEntity<Map<String, String>> create(
             @Valid @RequestBody CreateStudentRequestDTO newStudent
