@@ -7,4 +7,6 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface StudentsRepository
-    extends JpaRepository<StudentsEntity, UUID> {}
+    extends JpaRepository<StudentsEntity, UUID> {
+    StudentsEntity findByEmail(String email);
+}

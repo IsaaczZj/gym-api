@@ -3,6 +3,7 @@ package br.com.isaac.gym_api.controller;
 import br.com.isaac.gym_api.dto.physicalAssessment.PhysicalAssessmentResponseDTO;
 import br.com.isaac.gym_api.dto.students.CreateStudentRequestDTO;
 import br.com.isaac.gym_api.dto.students.StudentsResponseDTO;
+import br.com.isaac.gym_api.exception.NotFoundException;
 import br.com.isaac.gym_api.service.StudentsService;
 import jakarta.validation.Valid;
 import java.util.List;
@@ -37,7 +38,7 @@ public class StudentsController {
     @GetMapping("/physical-assessment/{id}")
     public ResponseEntity<
         List<PhysicalAssessmentResponseDTO>
-    > findAllPhysicalAssessment(@PathVariable UUID id) {
+    > findAllPhysicalAssessment(@PathVariable UUID id) throws NotFoundException {
         return ResponseEntity.ok(studentsService.findAllPhysicalAssessment(id));
     }
 }
