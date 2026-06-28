@@ -22,7 +22,7 @@ public class WorkoutsEntity {
     private UUID id;
 
     @Column(nullable = false)
-    private String nome;
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "student_id")

@@ -1,8 +1,10 @@
 package br.com.isaac.gym_api.service;
 
 import br.com.isaac.gym_api.database.model.StudentsEntity;
+import br.com.isaac.gym_api.database.model.WorkoutsEntity;
 import br.com.isaac.gym_api.database.repository.PhysicalAssessmentRepository;
 import br.com.isaac.gym_api.database.repository.StudentsRepository;
+import br.com.isaac.gym_api.database.repository.WorkoutsRepository;
 import br.com.isaac.gym_api.dto.physicalAssessment.PhysicalAssessmentResponseDTO;
 import br.com.isaac.gym_api.dto.students.CreateStudentRequestDTO;
 import br.com.isaac.gym_api.dto.students.StudentsResponseDTO;
@@ -10,6 +12,7 @@ import br.com.isaac.gym_api.dto.students.StudentsResponseDTO;
 import java.util.List;
 import java.util.UUID;
 
+import br.com.isaac.gym_api.dto.workouts.WorkoutResponseDTO;
 import br.com.isaac.gym_api.exception.AppErrorException;
 import br.com.isaac.gym_api.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +24,7 @@ import org.springframework.stereotype.Service;
 public class StudentsService {
 
     private final StudentsRepository studentsRepository;
-
+    private final WorkoutsRepository workoutsRepository;
     private final PhysicalAssessmentRepository physicalAssessmentRepository;
 
     public void create(CreateStudentRequestDTO newStudent) {
@@ -59,5 +62,12 @@ public class StudentsService {
                 .stream()
                 .map(PhysicalAssessmentResponseDTO::fromEntity)
                 .toList();
+    }
+
+    public List<WorkoutResponseDTO> findAllWorkouts(UUID id) {
+        return workoutsRepository.findAllByStudentId(id).stream().map(WorkoutResponseDTO::fromEntity
+        ).toList();
+
+
     }
 }
