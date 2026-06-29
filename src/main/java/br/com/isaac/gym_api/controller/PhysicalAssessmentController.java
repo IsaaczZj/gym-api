@@ -6,11 +6,11 @@ import br.com.isaac.gym_api.exception.NotFoundException;
 import br.com.isaac.gym_api.service.PhysicalAssessmentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -28,8 +28,11 @@ public class PhysicalAssessmentController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PhysicalAssessmentResponseDTO>> findAll(){
-        return ResponseEntity.ok(physicalAssessmentService.findAll());
+    public ResponseEntity<Page<PhysicalAssessmentResponseDTO>> findAll(
+            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "10") Integer size
+    ) {
+        return ResponseEntity.ok(physicalAssessmentService.findAll(page, size));
     }
 
 }

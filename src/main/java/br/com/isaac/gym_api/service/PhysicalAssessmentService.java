@@ -10,10 +10,12 @@ import br.com.isaac.gym_api.exception.AppErrorException;
 import br.com.isaac.gym_api.exception.NotFoundException;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -65,8 +67,9 @@ public class PhysicalAssessmentService {
         );
     }
 
-    public List<PhysicalAssessmentResponseDTO> findAll() {
-        return physicalAssessmentRepository.findAll().stream()
-                .map(PhysicalAssessmentResponseDTO::fromEntity).toList();
+    public Page<PhysicalAssessmentResponseDTO> findAll(Integer page, Integer size) {
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "createdAt"));
+        return physicalAssessmentRepository.findAll(pageRequest)
+                .map(PhysicalAssessmentResponseDTO::fromEntity);
     }
 }

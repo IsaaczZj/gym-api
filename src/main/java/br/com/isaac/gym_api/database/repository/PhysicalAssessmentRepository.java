@@ -2,6 +2,7 @@ package br.com.isaac.gym_api.database.repository;
 
 import br.com.isaac.gym_api.database.model.PhysicalAssessmentEntity;
 
+
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -15,6 +16,5 @@ public interface PhysicalAssessmentRepository
     );
 
     List<PhysicalAssessmentEntity> findAllByStudentId(UUID id);
-
 
 }
